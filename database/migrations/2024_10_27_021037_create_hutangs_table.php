@@ -17,7 +17,7 @@ return new class extends Migration
             $table->decimal('jumlah_hutang', 15, 2);
             $table->decimal('jumlah_bayar', 15, 2)->default(0);
             $table->decimal('sisa_hutang', 15, 2)->storedAs('jumlah_hutang - jumlah_bayar');
-            $table->boolean('status')->storedAs('sisa_hutang <= 0');
+            $table->enum('status', ['lunas', 'belum_lunas'])->storedAs('sisa_hutang <= 0');
             $table->date('tanggal');
             $table->timestamps();
             $table->foreign('penitipan_id')->references('id')->on('penitipans')->onDelete('cascade');
