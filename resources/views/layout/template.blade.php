@@ -117,7 +117,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link {{ ($title==='penjual')?'active':''}}">
+                            <a href="{{route('penitipan.index')}}" class="nav-link {{ ($title==='penjual')?'active':''}}">
                                 <i class="nav-icon fas fa-book"></i>
                                 <p>
                                     penitipan

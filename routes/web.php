@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\penitipancontroller;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,3 +19,4 @@ Route::get('/', function () {
         "title"=>"Dashboard"
     ]);
 });
+Route::resource('penitipan', penitipancontroller::class);
