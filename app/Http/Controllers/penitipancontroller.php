@@ -42,7 +42,6 @@ public function update(Request $request, penitipan $penitipan): RedirectResponse
             "merek"=>"required",
             "jumlah_titip"=>"required",
             "harga_satuan"=>"required",
-            "tanggal"=>"required",
             "harga_bayar"=>"required",
             "status"=>"nullable",
     ]);

@@ -25,7 +25,7 @@
 
             <div class=" card-body">
                 <div class="form-group">
-                    <label for="nama_umkm">Nama penitipan</label>
+                    <label for="nama_umkm">Nama umkm</label>
                     <input type="text" class="form-control" id="nama_umkm" name="nama_umkm" placeholder="">
                 </div>
                 <div class="form-group">
@@ -37,7 +37,7 @@
                     <input type="number" class="form-control" id="jumlah_titip" name="jumlah_titip">
                 </div>
                 <div class="form-group">
-                    <label for="harga_satuan">jharga satuan</label>
+                    <label for="harga_satuan">harga satuan</label>
                     <input type="number" class="form-control" id="harga_satuan" name="harga_satuan">
                 </div>
                 <div class="form-group">
