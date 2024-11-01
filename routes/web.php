@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\hutangcontroller;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\penitipancontroller;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +23,8 @@ Route::get('/', function () {
     ]);
 });
 Route::resource('penitipan', penitipancontroller::class);
+Route::resource('hutang', hutangcontroller::class);
+Route::get('login',[LoginController::class,'loginView'])->name('login');
+route::post('login',[LoginController::class,'authenticate']);
+Route::post('logout',[LoginController::class,'logout']);
+Route::resource('user',UserController::class)->except('show','destroy','create','update','edit');

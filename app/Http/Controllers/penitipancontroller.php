@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\penitipan;
+use App\Models\hutang;
 use illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
@@ -29,8 +30,17 @@ class penitipancontroller extends Controller
             "harga_bayar"=>"required",
             "status"=>"nullable",
         ]);
-        penitipan::create($request->all());
-        return redirect()->route('penitipan.index')->with('success data','data customer berhasil ditambahkan');
+        $penitipan = Penitipan::create($request->all());
+
+    $totalHutang = $request->jumlah_titip * $request->harga_satuan - $request->harga_bayar;
+
+    hutang::create([
+        'penitipan_id' => $penitipan->id,
+        'jumlah_hutang' => $totalHutang,
+        'tanggal' => $request->tanggal,
+    ]);
+
+    return redirect()->route('penitipan.index')->with('success', 'Data penitipan dan hutang berhasil ditambahkan');
     }
     public function edit(penitipan $penitipan): View {
     return view('penitipan.edit', compact('penitipan'))->with(["title"=>"ubah data penitipan"]);
