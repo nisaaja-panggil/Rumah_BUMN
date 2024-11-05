@@ -108,7 +108,7 @@
                         </li>
                         <li class="nav-item">
                             {{-- <a href="{{ route('kategori.index')}}" --}}
-                            <a href="#"
+                            <a href="{{route('produk.index')}}"
                                 class="nav-link {{ ($title==='barang') ? 'active':'' }}">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>

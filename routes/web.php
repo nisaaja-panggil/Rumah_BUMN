@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\barangcontroller;
 use App\Http\Controllers\hutangcontroller;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\penitipancontroller;
@@ -28,3 +29,5 @@ Route::get('login',[LoginController::class,'loginView'])->name('login');
 route::post('login',[LoginController::class,'authenticate']);
 Route::post('logout',[LoginController::class,'logout']);
 Route::resource('user',UserController::class)->except('show','destroy','create','update','edit');
+Route::resource('produk', barangcontroller::class);
+Route::POST('caribarang',[barangcontroller::class,'cari'])->name('cariproduk');
