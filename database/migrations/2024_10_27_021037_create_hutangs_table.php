@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('penitipan_id');
             $table->decimal('jumlah_hutang', 15, 2);
-            $table->decimal('jumlah_bayar', 15, 2)->default(0);
-            $table->decimal('sisa_hutang', 15, 2)->storedAs('jumlah_hutang - jumlah_bayar');
-            $table->enum('status', ['lunas', 'belum_lunas'])->storedAs('sisa_hutang <= 0');
+            $table->decimal('jumlah_bayar', 15, 2)->default(0); // Default pembayaran 0
+            $table->decimal('sisa_hutang', 15, 2)->virtualAs('jumlah_hutang - jumlah_bayar'); // Virtual kolom
+            $table->enum('status', ['lunas', 'belum_lunas'])->default('belum_lunas'); // Status default
             $table->date('tanggal');
             $table->timestamps();
             $table->foreign('penitipan_id')->references('id')->on('penitipans')->onDelete('cascade');

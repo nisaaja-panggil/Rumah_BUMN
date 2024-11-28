@@ -43,7 +43,16 @@
                 <div class="form-group">
                     <label for="harga_bayar">harga bayar</label>
                     <input type="number" class="form-control" id="harga_bayar" name="harga_bayar">
-                </div>
+                    <div class="form-group">
+                        <label for="status" class="form-label">status</label>
+                        <select class="form-control" name="status">
+                            <option hidden>--Pilih status--</option>
+                            
+                                <option value="belum_lunas">belum lunas</option>
+                                <option value="lunas">lunas</option>
+                            
+                        </select>
+                    </div>
                 <div class="form-group">
                     <label for="tanggal">tanggal</label>
                     <input type="date" class="form-control" id="tanggal" name="tanggal">

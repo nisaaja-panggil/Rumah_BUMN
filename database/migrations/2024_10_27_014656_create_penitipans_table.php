@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('penitipans', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_umkm'); 
+            $table->string('nama_umkm');
             $table->string('merek');
             $table->integer('jumlah_titip');
             $table->decimal('harga_satuan', 15, 2);
             $table->date('tanggal');
             $table->decimal('harga_bayar', 15, 2);
-            $table->enum('status', ['lunas', 'belum_lunas']);
+            $table->enum('status', ['lunas', 'belum_lunas'])->default('belum_lunas');
             $table->timestamps();
         });
     }

@@ -20,28 +20,37 @@ class penitipancontroller extends Controller
     public function create():View{
         return view('penitipan.tambah')->with(["title"=>"tambah data penitipan"]);
     }
-    public function store(Request $request):RedirectResponse{
-        $request->validate([
-            "nama_umkm"=>"required",
-            "merek"=>"required",
-            "jumlah_titip"=>"required",
-            "harga_satuan"=>"required",
-            "tanggal"=>"required",
-            "harga_bayar"=>"required",
-            "status"=>"nullable",
-        ]);
-        $penitipan = Penitipan::create($request->all());
+    public function store(Request $request): RedirectResponse
+{ 
+    $request->validate([
+        "nama_umkm" => "required",
+        "merek" => "required",
+        "jumlah_titip" => "required|numeric|min:1",
+        "harga_satuan" => "required|numeric|min:0",
+        "harga_bayar" => "required|numeric|min:0",
+        "status"=>"nullable",
+        "tanggal" => "required|date",
+    ]);
 
-    $totalHutang = $request->jumlah_titip * $request->harga_satuan - $request->harga_bayar;
+    // Simpan data penitipan
+    $penitipan = Penitipan::create($request->all());
 
+    $statusPenitipan = $penitipan->status;
+
+    // Simpan data hutang
     hutang::create([
+        
         'penitipan_id' => $penitipan->id,
-        'jumlah_hutang' => $totalHutang,
+        'jumlah_hutang' => $request->harga_bayar, // jumlah_hutang disamakan dengan harga_bayar
         'tanggal' => $request->tanggal,
+        'status' => $statusPenitipan,
     ]);
 
     return redirect()->route('penitipan.index')->with('success', 'Data penitipan dan hutang berhasil ditambahkan');
-    }
+}
+
+
+
     public function edit(penitipan $penitipan): View {
     return view('penitipan.edit', compact('penitipan'))->with(["title"=>"ubah data penitipan"]);
 }

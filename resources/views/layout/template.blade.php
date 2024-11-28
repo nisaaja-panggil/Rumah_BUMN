@@ -84,7 +84,7 @@
                             alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block"></a>{{ Auth::user()->name }}
+                        <a href="#" class="d-block">{{auth::user()->name}}</a>
                     </div>
                 </div>
 
@@ -146,6 +146,14 @@
                                 <i class="nav-icon fas fa-bookmark"></i>
                                 <p>
                                    hutang
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('penjualan.index')}}" class="nav-link {{ ($title==='hutang') ? 'active':'' }}">
+                                <i class="nav-icon fas fa-bookmark"></i>
+                                <p>
+                                  Penjualan
                                 </p>
                             </a>
                         </li>

@@ -18,7 +18,7 @@ class barangcontroller extends Controller
 
     public function cari(Request $request){
         $cari=$request->cari;
-        $produk=produk::where('name','LIKE','%'.$cari.'%')
+        $produk=produk::where('nama_produk','LIKE','%'.$cari.'%')
                       ->paginate(8);
         return view( 'produk.index',['data'=>$produk])->with(["title"=>"cari produk"]);
     }
