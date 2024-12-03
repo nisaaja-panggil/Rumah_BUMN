@@ -12,16 +12,16 @@ class hutangcontroller extends Controller
 {
     public function index(): View
     {
-        $title = 'Hutang'; // Menambahkan variabel title
+        $title = 'Hutang';
         $hutang = hutang::with('penitipan')->get();
-        return view('hutang.index', compact('hutang', 'title')); // Menyertakan title dalam compact
+        return view('hutang.index', compact('hutang', 'title'));
     }
 
     public function create(): View
     {
-        $title = 'Tambah Hutang'; // Menambahkan variabel title
-        $penitipan = penitipan::all(); // Untuk memilih penitipan yang ada
-        return view('hutang.create', compact('penitipan', 'title')); // Menyertakan title dalam compact
+        $title = 'Tambah Hutang';
+        $penitipan = penitipan::all();
+        return view('hutang.create', compact('penitipan', 'title'));
     }
 
     public function store(Request $request): RedirectResponse
@@ -33,11 +33,13 @@ class hutangcontroller extends Controller
             'tanggal' => 'required|date',
         ]);
 
+        // Buat hutang baru
         hutang::create([
             'penitipan_id' => $request->penitipan_id,
             'jumlah_hutang' => $request->jumlah_hutang,
             'jumlah_bayar' => $request->jumlah_bayar,
             'tanggal' => $request->tanggal,
+            'status' => $request->jumlah_hutang <= $request->jumlah_bayar ? 'lunas' : 'belum_lunas', // Atur status
         ]);
 
         return redirect()->route('hutang.index')->with('success', 'Data hutang berhasil ditambahkan');
@@ -45,9 +47,9 @@ class hutangcontroller extends Controller
 
     public function edit(hutang $hutang): View
     {
-        $title = 'Edit Hutang'; // Menambahkan variabel title
+        $title = 'Edit Hutang';
         $penitipan = penitipan::all();
-        return view('hutang.edit', compact('hutang', 'penitipan', 'title')); // Menyertakan title dalam compact
+        return view('hutang.edit', compact('hutang', 'penitipan', 'title'));
     }
 
     public function update(Request $request, hutang $hutang): RedirectResponse
@@ -59,18 +61,24 @@ class hutangcontroller extends Controller
         'tanggal' => 'required|date',
     ]);
 
-    // Hitung sisa hutang setelah pembayaran
+    // Hitung sisa hutang
     $sisaHutang = $hutang->jumlah_hutang - $request->jumlah_bayar;
 
+    // Tentukan status berdasarkan sisa hutang
+    $status = $sisaHutang <= 0 ? 'lunas' : 'belum_lunas';
+
+    // Update data hutang
     $hutang->update([
         'penitipan_id' => $request->penitipan_id,
-        'jumlah_hutang' => $sisaHutang < 0 ? 0 : $sisaHutang, // Pastikan jumlah hutang tidak negatif
+        'jumlah_hutang' => $request->jumlah_hutang,
         'jumlah_bayar' => $request->jumlah_bayar,
         'tanggal' => $request->tanggal,
+        'status' => $status, // Perbarui status secara manual
     ]);
 
     return redirect()->route('hutang.index')->with('success', 'Data hutang berhasil diubah');
 }
+
 
     public function destroy(hutang $hutang): RedirectResponse
     {

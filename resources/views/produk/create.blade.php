@@ -46,8 +46,8 @@
                 <input type="number" class="form-control" id="stok" name="stok">
               </div>
               <div class="mb-3">
-                <label for="harga" class="form-label">harga</label>
-                <input type="number" class="form-control" id="harga" name="harga">
+                <label for="price" class="form-label">price</label>
+                <input type="number" class="form-control" id="price" name="price">
               </div>
               <div class="mb-3">
                 <label for="foto" class="form-label">foto</label>

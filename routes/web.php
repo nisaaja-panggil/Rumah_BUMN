@@ -1,11 +1,11 @@
 <?php
 
 use App\Http\Controllers\barangcontroller;
+use App\Http\Controllers\CetakController;
 use App\Http\Controllers\hutangcontroller;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\penitipancontroller;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\PenjualanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,4 +32,20 @@ Route::post('logout',[LoginController::class,'logout'])->middleware('auth');
 Route::resource('user',UserController::class)->except('show','destroy','create','update','edit')->middleware('auth');
 Route::resource('produk', barangcontroller::class)->middleware('auth');
 Route::POST('caribarang',[barangcontroller::class,'cari'])->name('cariproduk')->middleware('auth');
-Route::resource('penjualan', PenjualanController::class)->middleware('auth');
+Route::get('penjualan',function(){
+    return view('penjualan.index',[
+        "title"=>"penjualan"
+    ]);
+})->middleware('auth');
+Route::get('orders',function(){
+    return view('penjualan.orders',[
+        "title"=>"order"
+    ]);
+})->middleware('auth');
+Route::get('cetakReceipt',[CetakController::class,'receipt'])->name('cetakReceipt')->middleware('auth');
+Route::get('orders/{id}', function ($id) {
+    return view('penjualan.orders', [
+        "title" => "Order Detail",
+        "order" => App\Models\Penjualan::findOrFail($id), // Ambil data penjualan berdasarkan ID
+    ]);
+})->name('orders.show')->middleware('auth');

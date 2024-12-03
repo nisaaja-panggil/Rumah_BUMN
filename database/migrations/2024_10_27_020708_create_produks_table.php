@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('penitipan_id'); // Menambahkan kolom foreign key
             $table->string('nama_produk');
-            $table->decimal('harga', 15, 2);
+            $table->double('price');
             $table->integer('stok');
             $table->text('deskripsi')->nullable();
             $table->string('foto')->nullable();

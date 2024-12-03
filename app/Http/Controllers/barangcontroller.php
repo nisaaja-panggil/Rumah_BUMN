@@ -30,7 +30,7 @@ class barangcontroller extends Controller
         $validasi = $request->validate([
             "nama_produk" => "required",
             "penitipan_id" => "nullable",
-            "harga" => "required",
+            "price" => "required",
             "stok" => "required",
             "deskripsi" => "required",
             "foto" => "image|file" // Ubah ukuran maksimum
@@ -50,7 +50,7 @@ class barangcontroller extends Controller
     public function update(produk $produk, Request $request){
         $validasi = $request->validate([
             "nama_produk" => "required",
-            "harga" => "required",
+            "price" => "required",
             "stok" => "required",
             "deskripsi" => "required",
             "foto" => "image|file" // Ubah ukuran maksimum

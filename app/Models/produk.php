@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class produk extends Model
 {
     use HasFactory;
-    protected $fillable = ['nama_produk', 'penitipan_id', 'deskripsi', 'stok', 'harga', 'foto'];
+    protected $fillable = ['nama_produk', 'penitipan_id', 'deskripsi', 'stok', 'price', 'foto'];
 
 
 

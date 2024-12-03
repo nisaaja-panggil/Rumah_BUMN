@@ -1,4 +1,4 @@
 @extends('layout.masterlw')
 @section('konten')
-   @livewire('penjualans') 
+   @livewire('orders') 
 @endsection

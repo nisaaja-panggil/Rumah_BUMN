@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('produk_id');
             $table->unsignedBigInteger('penjualan_id');
-            $table->string('nama_customer');
             $table->integer('qty');
             $table->double('price');
             $table->timestamps();

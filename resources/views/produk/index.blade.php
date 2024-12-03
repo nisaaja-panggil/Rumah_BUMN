@@ -34,8 +34,8 @@
                             <div class="card-body">
                                 
                                 <p class="card-text">nama produk : {{ $produk->nama_produk }}</p>
-                                <p class="card-text">harga : {{ $produk->harga}}</p>
-                                <p class="card-text">stok : {{ $produk->stok }}</p>
+                                <p class="@if($produk->stok <= 0) text-danger @endif"> stok : {{ $produk->stok }}</p>
+                                  <p>price : @money($produk->price) </p>
                                
                                 <p class="card-text">penjual : {{ $produk->penitipan_id }}</p>
                                 

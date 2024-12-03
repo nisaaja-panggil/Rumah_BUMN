@@ -42,7 +42,7 @@
                         <span class="dropdown-item dropdown-header">User Menu</span>
                         <div class="dropdown-divider"></div>
                         <a href="#" class="dropdown-item">
-                            <i class="fas fa-user mr-2"></i> {{ Auth::user()->name }}
+                            <i class="fas fa-user mr-2"></i>{{ Auth::user()->name }} 
                             <span class="float-right text-muted text-sm"></span>
                         </a>
     
@@ -150,7 +150,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('penjualan.index')}}" class="nav-link {{ ($title==='hutang') ? 'active':'' }}">
+                            <a href="penjualan" class="nav-link {{ ($title==='hutang') ? 'active':'' }}">
                                 <i class="nav-icon fas fa-bookmark"></i>
                                 <p>
                                   Penjualan

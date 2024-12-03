@@ -14,14 +14,10 @@ class penjualan extends Model
     protected $table = 'penjualans'; // Nama tabel
 
     protected $fillable = [
-        'produk_id',
-        'nama_customer',
-        'jumlah',
+        'user_id',
+        'invoice',
+        'nama_customer', // Pastikan nama_customer ada di sini
         'total',
-        'diskon',
-        'uang_bayar',
-        'uang_kembali',
-        'tanggal',
     ];
     public function barang()
     {
