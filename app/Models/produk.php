@@ -17,4 +17,9 @@ class produk extends Model
     {
         return $this->hasMany(penjualan::class, 'produk_id');
     }
+    public function detail_penjualan()
+{
+    return $this->hasMany(detail_penjualan::class, 'produk_id');
+}
+
 }

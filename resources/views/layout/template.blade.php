@@ -157,6 +157,12 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('riwayat-penjualan') }}" class="nav-link {{ ($title === 'Riwayat Penjualan') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-history"></i>
+                                <p>Riwayat Penjualan</p>
+                            </a>
+                        </li>   
 
 
 

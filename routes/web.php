@@ -6,6 +6,7 @@ use App\Http\Controllers\hutangcontroller;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\penitipancontroller;
 use App\Http\Controllers\UserController;
+use App\Livewire\Orders;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,3 +50,4 @@ Route::get('orders/{id}', function ($id) {
         "order" => App\Models\Penjualan::findOrFail($id), // Ambil data penjualan berdasarkan ID
     ]);
 })->name('orders.show')->middleware('auth');
+Route::get('/riwayat-penjualan', [Orders::class, 'riwayat'])->name('riwayat-penjualan')->middleware('auth');

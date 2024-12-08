@@ -17,56 +17,82 @@ class Orders extends Component
     public $penjualan_id;
     public $produk_id;
     public $qty = 1;
-    public $uang;
-  
-    public $kembali;
+    public $uang = 0; // Tambahkan properti uang
+    public $kembali = 0;
+    public $diskon = 0;  // Tambahkan properti untuk diskon
+public $totalSetelahDiskon = 0; // Tambahkan properti untuk total setelah diskon
 
     public function render()
 {
+    
     $penjualan = penjualan::select('*')->where('user_id', '=', Auth::user()->id)->orderBy('id', 'desc')->first();
     
-    $this->total = $penjualan->total;
-        $this->kembali = $this->uang - $this->total;
+    $this->total = $penjualan->total ?? 0; // Pastikan ada nilai default
+        $this->totalSetelahDiskon = $this->total - $this->diskon; // Menghitung total setelah diskon
+    $this->kembali = $this->uang - $this->totalSetelahDiskon;
+
         return view('livewire.orders')
             ->with("data", $penjualan)
-            ->with("dataproduct", produk::where('stok', '<', '0')->get())
+            ->with("dataproduct", produk::where('stok', '>', '0')->get())
             ->with("datadetail_penjualan", detail_penjualan::where('penjualan_id', '=', $penjualan->id)->get());
     
+            
+}
+public function updatedUang($value)
+{
+    $this->kembali = $value - $this->total;
 }
 
-    public function store()
-    {
-        $this->validate([
-
-            'produk_id' => 'required'
-        ]);
-        $penjualan = Penjualan::where('user_id', '=', Auth::user()->id)->orderBy('id', 'desc')->first();
-
-if ($penjualan) {
-    $detail_penjualan = detail_penjualan::where('penjualan_id', '=', $penjualan->id)
-        ->orderBy('id', 'desc')
-        ->first();
-    $this->total = $detail_penjualan->total ?? 0;
-}
-        $this->penjualan_id = $penjualan->id;
-        $produk = produk::where('id', '=', $this->produk_id)->get();
-        $harga = $produk[0]->price;
-        detail_penjualan::create([
-            'penjualan_id' => $this->penjualan_id,
-            'produk_id' => $this->produk_id,
-            'qty' => $this->qty,
-            'price' => $harga
-        ]);
-
-
-        $total = $penjualan->total;
-        $total = $total + ($harga * $this->qty);
-        penjualan::where('id', '=', $this->penjualan_id)->update([
-            'total' => $total
-        ]);
-        $this->produk_id = NULL;
-        $this->qty = 1;
+public function store()
+{
+    $this->validate([
+        'produk_id' => 'required'
+    ]);
+    
+    // Ambil data penjualan terbaru
+    $penjualan = penjualan::select('*')->where('user_id', '=', Auth::user()->id)->orderBy('id', 'desc')->first();
+    $this->penjualan_id = $penjualan->id;
+    
+    // Ambil data produk berdasarkan produk_id, menggunakan first() bukan get()
+    $produk = produk::where('id', '=', $this->produk_id)->first(); // Menggunakan first() untuk mendapatkan objek produk
+    if (!$produk) {
+        session()->flash('error', 'Produk tidak ditemukan');
+        return;
     }
+    
+    $harga = $produk->price;
+    
+    // Cek apakah stok mencukupi
+    if ($produk->stok < $this->qty) {
+        session()->flash('error', 'Stok tidak mencukupi');
+        return;
+    }
+    
+    // Menyimpan detail penjualan
+    detail_penjualan::create([
+        'penjualan_id' => $this->penjualan_id,
+        'produk_id' => $this->produk_id,
+        'qty' => $this->qty,
+        'price' => $harga
+    ]);
+    
+    // Mengupdate total penjualan
+    $total = $penjualan->total;
+    $total = $total + ($harga * $this->qty);
+    penjualan::where('id', '=', $this->penjualan_id)->update([
+        'total' => $total
+    ]);
+    
+    // Mengurangi stok produk setelah transaksi
+    $stok = $produk->stok - $this->qty; // Mengurangi stok berdasarkan kuantitas
+    produk::where('id', '=', $this->produk_id)->update([
+        'stok' => $stok
+    ]);
+    
+    // Reset input form
+    $this->produk_id = NULL;
+    $this->qty = 1;
+}
 
     public function delete($detail_penjualan_id)
     {
@@ -103,5 +129,16 @@ public function receipt($id){
     }
     return Redirect::Route('cetakReceipt')->with(['id'=>$id]);
 }
+public function riwayat()
+{
+    $title = 'Riwayat Penjualan';
 
+    // Mengambil riwayat penjualan dengan detail produk
+    $riwayatPenjualan = penjualan::with(['detail_penjualan.produk']) // Mengambil detail penjualan dan produk
+        ->orderBy('created_at', 'desc') // Mengurutkan berdasarkan waktu penjualan
+        ->get();
+
+    // Mengirim data ke view riwayat-penjualan.blade.php
+    return view('livewire.riwayat-penjualan', compact('title', 'riwayatPenjualan'));
+}
 }

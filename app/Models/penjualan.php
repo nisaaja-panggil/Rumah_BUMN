@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 
 class penjualan extends Model
@@ -19,37 +20,11 @@ class penjualan extends Model
         'nama_customer', // Pastikan nama_customer ada di sini
         'total',
     ];
-    public function barang()
-    {
-        return $this->belongsTo(Produk::class);
-    }
-    // Mengatur bahwa kolom 'uang_kembali' otomatis dihitung
-    protected $casts = [
-        'uang_kembali' => 'decimal:2',
-    ];
-
-    /**
-     * Relasi ke model Produk
-     * Satu penjualan terkait dengan satu produk
-     */
     public function produk()
     {
         return $this->belongsTo(Produk::class);
     }
-
-    /**
-     * Hitung Grand Total (total setelah diskon)
-     */
-    public function getGrandTotalAttribute()
-    {
-        return $this->total - $this->diskon;
-    }
-
-    /**
-     * Hitung Kembalian (uang yang dibayarkan - grand total)
-     */
-    public function getKembalianAttribute()
-    {
-        return $this->uang_bayar - $this->grand_total;
+    public function detail_penjualan():HasMany{
+        return $this->hasMany(detail_penjualan::class);
     }
 }

@@ -58,8 +58,8 @@
                                 <label for="produk_id">Produk</label>
                                 <select class="form-control" wire:model="produk_id" name="produk_id">
                                     <option hidden>--Pilih Produk--</option>
-                                    @foreach($dataproduct as $dt )
-                                    <option value="{{ $dt->id }}">{{ $dt->nama_produk }}</option>
+                                    @foreach($dataproduct as $dt)
+                                    <option value="{{ $dt->id }}">{{ $dt->nama_produk }} - Stok: {{ $dt->stok }}</option>
                                     @endforeach
                                 </select>
 
@@ -71,6 +71,11 @@
 
 
                             </div>
+<!-- Input Diskon -->
+<div class="form-group mt-3">
+    <label for="diskon">Diskon (Rp)</label>
+    <input type="number" class="form-control" wire:model="diskon" name="diskon" placeholder="Masukkan diskon">
+</div>
 
                         </div>
                         <!-- /.card-body -->
@@ -132,13 +137,28 @@
                             </tr>
                             <tr>
                                 <th>
+                                    <h2>Diskon</h2>
+                                </th>
+                                <th>:</th>
+                                <th><h2>@money($diskon)</h2></th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <h2>Total Setelah Diskon</h2>
+                                </th>
+                                <th>:</th>
+                                <th><h2>@money($totalSetelahDiskon)</h2></th>
+                            </tr>
+                            <tr>
+                                <th>
                                     <h2>Uang</h2>
                                 </th>
                                 <th>
                                         :
                                 </th>
                                 <th>
-                                <input type="number" class="mt-2" wire:model="uang">
+                                    <input type="number" wire:model.lazy="uang">
+
                                 </th>
                             </tr>
                             <tr>
