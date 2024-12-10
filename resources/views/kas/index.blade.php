@@ -22,8 +22,8 @@
         <div class="card-body">
             <!-- Tambahkan total arus masuk di sini -->
             <div class="col-md-12">
-                <h4>Total Arus Masuk: @money($totalArusMasuk )</h4>
-                <h4>Total Arus Keluar: @money($totalArusKeluar)</h4>
+                <h4>Saldo: @money($totalArusMasuk )</h4>
+                <h4>pengeluaran: @money($totalArusKeluar)</h4>
             
                 <!-- Tabel Arus Masuk -->
                 <h5>Arus Masuk</h5>

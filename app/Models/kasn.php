@@ -12,19 +12,7 @@ class kasn extends Model
     use HasFactory;
     protected $fillable = ['penjualan_id', 'hutang_id', 'arus', 'total','tanggal'];
 
-    protected static function boot()
-{
-    parent::boot();
 
-    static::creating(function ($kasn) {
-        $existingData = kasn::where('penjualan_id', $kasn->penjualan_id)->first();
-        if ($existingData) {
-            throw ValidationException::withMessages([
-                'penjualan_id' => 'Customer ini sudah ada di data kas.',
-            ]);
-        }
-    });
-}
     public function penjualan()
 {
     return $this->belongsTo(Penjualan::class);

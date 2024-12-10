@@ -52,4 +52,4 @@ Route::get('orders/{id}', function ($id) {
     ]);
 })->name('orders.show')->middleware('auth');
 Route::get('/riwayat-penjualan', [Orders::class, 'riwayat'])->name('riwayat-penjualan')->middleware('auth');
-Route::resource('kas', kascontroller::class)->middleware('auth');
+Route::resource('kas', KasController::class)->middleware('auth');

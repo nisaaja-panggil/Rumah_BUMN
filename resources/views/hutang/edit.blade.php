@@ -38,7 +38,7 @@
                 </div>
                 <div class="form-group">
                     <label for="jumlah_bayar">Jumlah Bayar</label>
-                    <input type="number" class="form-control" id="jumlah_bayar" name="jumlah_bayar" value="{{ $hutang->jumlah_bayar }}">
+                    <input type="number" class="form-control" id="jumlah_bayar" name="jumlah_bayar" value="{{ old('jumlah_bayar', $hutang->jumlah_bayar) }}">
                 </div>
                 <div class="form-group">
                     <label for="tanggal">Tanggal</label>

@@ -1,0 +1,77 @@
+[33mcommit d605fff305b1d8ea490d92b4ef86143855001d23[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: nisaaja-panggil <nisa31102007@gmail.com>
+Date:   Tue Dec 10 18:55:44 2024 +0700
+
+    membuat arus keluar
+
+[33mcommit 82e00c9f79cba57ff2446c0b8847c3bb76b3b7df[m
+Author: nisaaja-panggil <nisa31102007@gmail.com>
+Date:   Tue Dec 10 18:20:19 2024 +0700
+
+    membuat tampilan kas dan tambah kas
+
+[33mcommit cc4d1574e70edf56a746686670071e1dc5c9863f[m
+Author: nisaaja-panggil <nisa31102007@gmail.com>
+Date:   Sun Dec 8 18:58:25 2024 +0700
+
+    menambah diskon , membuat riwayat penjualan dan mengurangi stok produk ketika ada transaksi
+
+[33mcommit f4965e45439b7490b5b9a6782a939ba605253300[m
+Author: nisaaja-panggil <nisa31102007@gmail.com>
+Date:   Tue Dec 3 14:55:20 2024 +0700
+
+    mengintall livewire, membuat penjualan namun belum begitu sempurna
+
+[33mcommit 212863bea9b72dc4d2357e08055f34526355405d[m
+Author: nisaaja-panggil <nisa31102007@gmail.com>
+Date:   Thu Nov 28 11:34:48 2024 +0700
+
+    mengubah sedikit database
+
+[33mcommit 8851bf975f6ef4d990532d002254ce4aa76c09aa[m
+Author: nisaaja-panggil <nisa31102007@gmail.com>
+Date:   Tue Nov 5 19:53:31 2024 +0700
+
+    membuat tampilan produk dan tambah produk
+
+[33mcommit 39c7529bcf49fe65a2ab07c29bc4731cf0afec2b[m
+Author: nisaaja-panggil <nisa31102007@gmail.com>
+Date:   Fri Nov 1 15:11:31 2024 +0700
+
+    membuat user dan login , juga sedikit from hutang
+
+[33mcommit 6a9d962a225d353fa532a9b9eee631008a139614[m
+Author: nisaaja-panggil <nisa31102007@gmail.com>
+Date:   Sun Oct 27 16:14:11 2024 +0700
+
+    membuat edit dan delete penitipan
+
+[33mcommit 59bf938489320c8acf06dc46689ab5527c70aa2b[m
+Author: nisaaja-panggil <nisa31102007@gmail.com>
+Date:   Sun Oct 27 16:00:31 2024 +0700
+
+    membuat tambah penitipan
+
+[33mcommit e6e304c40d2ae36155cfabc90d87e380f3e8c324[m
+Author: nisaaja-panggil <nisa31102007@gmail.com>
+Date:   Sun Oct 27 10:26:57 2024 +0700
+
+    membuat tampilan penitipan
+
+[33mcommit 86c66249125a2272a840d61ead20e0cd767c0b96[m
+Author: nisaaja-panggil <nisa31102007@gmail.com>
+Date:   Sun Oct 27 10:03:59 2024 +0700
+
+    memasukan template adminlte dan membuat dashboard
+
+[33mcommit e1fd2d3a1d40cb8221de52a82b14b046fd3ed611[m
+Author: nisaaja-panggil <nisa31102007@gmail.com>
+Date:   Sun Oct 27 09:42:13 2024 +0700
+
+    membuat database
+
+[33mcommit fa02b1caa34ef6aae0bed53c866f595990772cc4[m
+Author: nisaaja-panggil <nisa31102007@gmail.com>
+Date:   Sun Oct 27 08:21:52 2024 +0700
+
+    menginstall laravel
