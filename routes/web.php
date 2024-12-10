@@ -3,6 +3,7 @@
 use App\Http\Controllers\barangcontroller;
 use App\Http\Controllers\CetakController;
 use App\Http\Controllers\hutangcontroller;
+use App\Http\Controllers\kascontroller;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\penitipancontroller;
 use App\Http\Controllers\UserController;
@@ -51,3 +52,4 @@ Route::get('orders/{id}', function ($id) {
     ]);
 })->name('orders.show')->middleware('auth');
 Route::get('/riwayat-penjualan', [Orders::class, 'riwayat'])->name('riwayat-penjualan')->middleware('auth');
+Route::resource('kas', kascontroller::class)->middleware('auth');

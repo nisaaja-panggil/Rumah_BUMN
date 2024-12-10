@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class produk extends Model
 {
@@ -21,5 +22,8 @@ class produk extends Model
 {
     return $this->hasMany(detail_penjualan::class, 'produk_id');
 }
-
+public function penitipan()
+{
+    return $this->belongsTo(Penitipan::class, 'penitipan_id');
+}
 }

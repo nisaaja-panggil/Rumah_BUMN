@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\detail_penjualan;
 use App\Models\penjualan;
 use App\Models\produk;
+use App\Models\kasn;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -82,6 +83,7 @@ public function store()
     penjualan::where('id', '=', $this->penjualan_id)->update([
         'total' => $total
     ]);
+   
     
     // Mengurangi stok produk setelah transaksi
     $stok = $produk->stok - $this->qty; // Mengurangi stok berdasarkan kuantitas

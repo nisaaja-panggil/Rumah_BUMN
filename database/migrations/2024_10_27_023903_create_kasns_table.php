@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('penjualan_id')->nullable();  // Foreign key ke tabel orders
             $table->unsignedBigInteger('hutang_id')->nullable(); // Foreign key ke tabel hutang
-            $table->decimal('jumlah', 15, 2);
+           $table->double('total');
             $table->enum('arus', ['masuk', 'keluar']);
             $table->date('tanggal');
             $table->timestamps();

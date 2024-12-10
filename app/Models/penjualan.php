@@ -27,4 +27,8 @@ class penjualan extends Model
     public function detail_penjualan():HasMany{
         return $this->hasMany(detail_penjualan::class);
     }
+    public function kasn()
+    {
+        return $this->hasMany(Kasn::class);
+    }
 }

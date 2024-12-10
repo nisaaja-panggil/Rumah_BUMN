@@ -37,7 +37,7 @@
                                 <p class="@if($produk->stok <= 0) text-danger @endif"> stok : {{ $produk->stok }}</p>
                                   <p>price : @money($produk->price) </p>
                                
-                                <p class="card-text">penjual : {{ $produk->penitipan_id }}</p>
+                                <p class="card-text">penjual : {{ $produk->penitipan->nama_umkm }}</p>
                                 
                                 <a href="{{ route('produk.edit', $produk->id) }}" class="btn btn-sm btn-primary">Edit</a>
                                 <a href="{{ route('produk.show',$produk->id) }}" class="btn btn-sm btn-success">Show</a>

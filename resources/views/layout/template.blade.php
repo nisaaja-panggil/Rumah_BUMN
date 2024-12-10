@@ -125,11 +125,9 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link {{ ($title==='pembeli')?'active':''}}">
-                                <i class="nav-icon fas fa-book"></i>
-                                <p>
-                                    kas
-                                </p>
+                            <a href="{{ route('kas.index') }}" class="nav-link {{ ($title === 'Kas Masuk') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-wallet"></i>
+                                <p>Kas</p>
                             </a>
                         </li>
                         <li class="nav-item">
