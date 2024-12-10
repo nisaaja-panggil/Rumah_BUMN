@@ -21,35 +21,52 @@
 
         <div class="card-body">
             <!-- Tambahkan total arus masuk di sini -->
-            <div class="alert alert-info">
-                <strong>Saldo:</strong> @money($totalArusMasuk) 
+            <div class="col-md-12">
+                <h4>Total Arus Masuk: @money($totalArusMasuk )</h4>
+                <h4>Total Arus Keluar: @money($totalArusKeluar)</h4>
+            
+                <!-- Tabel Arus Masuk -->
+                <h5>Arus Masuk</h5>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Tanggal</th>
+                            <th>nama customer</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($dataMasuk as $item)
+                            <tr>
+                                <td>{{ $item->tanggal }}</td>
+                                <td>{{ $item->penjualan->nama_customer }}</td>
+                                <td>{{ $item->penjualan->total }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            
+                <!-- Tabel Arus Keluar -->
+                <h5>Arus Keluar</h5>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Tanggal</th>
+                            <th>Hutang ID</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($dataKeluar as $item)
+                            <tr>
+                                <td>{{ $item->tanggal }}</td>
+                                <td>{{ $item->hutang->penitipan_id }}</td>
+                                <td>{{ $item->total }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
-            <!-- Tabel Data Kas -->
-            <table id="example1" class="table table-bordered table-striped ">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Nama Customer</th>
-                        <th>Total Belanjaan</th>
-                        <th>Arus</th>
-                        <th>Tanggal</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($data as $dt)
-                    <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $dt->penjualan->nama_customer }}</td>
-                        <td>{{ $dt->penjualan->total }}</td>
-                        <td>{{ $dt->arus }}</td>
-                        <td>{{ $dt->created_at }}</td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
 @endsection
 
 @section('tambahanJS')

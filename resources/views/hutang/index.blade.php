@@ -39,9 +39,9 @@
                             <tr>
                                 <td>{{ $item->id }}</td>
                                 <td>{{ $item->penitipan->nama_umkm ?? '-' }}</td>
-                                <td>Rp {{ number_format($item->jumlah_hutang, 2) }}</td>
-                                <td>Rp {{ number_format($item->jumlah_bayar, 2) }}</td>
-                                <td>Rp {{ number_format($item->sisa_hutang, 2) }}</td>
+                                <td>@money($item->jumlah_hutang) </td>
+                                <td>@money($item->jumlah_bayar) </td>
+                                <td>@money($item->sisa_hutang) </td>
                                 <td>{{ $item->status }}</td>
                                 <td>{{ $item->tanggal }}</td>
                                 <td>

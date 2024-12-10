@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\hutang;
+use App\Models\kasn;
 use App\Models\penitipan;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -67,6 +68,13 @@ class hutangcontroller extends Controller
     // Tentukan status berdasarkan sisa hutang
     $status = $sisaHutang <= 0 ? 'lunas' : 'belum_lunas';
 
+    // Cek apakah jumlah bayar melebihi total saldo kas
+    $totalKas = kasn::sum('total'); // Mengambil total kas
+
+    if ($request->jumlah_bayar > $totalKas) {
+        return redirect()->back()->withErrors(['jumlah_bayar' => 'Saldo Anda tidak cukup untuk membayar hutang ini.']);
+    }
+
     // Update data hutang
     $hutang->update([
         'penitipan_id' => $request->penitipan_id,
@@ -76,7 +84,23 @@ class hutangcontroller extends Controller
         'status' => $status, // Perbarui status secara manual
     ]);
 
-    return redirect()->route('hutang.index')->with('success', 'Data hutang berhasil diubah');
+    // Update saldo kas jika jumlah bayar cukup
+    $kas = kasn::where('arus', 'masuk')->first(); // Menemukan transaksi kas yang pertama (sesuaikan jika lebih dari satu)
+    if ($kas) {
+        $kas->total -= $request->jumlah_bayar; // Kurangi saldo kas
+        $kas->save();
+    }
+
+    // Catat transaksi arus keluar untuk pembayaran hutang
+    kasn::create([
+        'penjualan_id' => null, // Tidak terkait dengan penjualan
+        'hutang_id' => $hutang->id, // Terkait dengan hutang
+        'arus' => 'keluar', // Menandakan arus keluar
+        'total' => $request->jumlah_bayar, // Jumlah yang dibayar
+        'tanggal' => now(), // Tanggal transaksi
+    ]);
+
+    return redirect()->route('hutang.index')->with('success', 'Data hutang berhasil diubah dan arus kas keluar tercatat');
 }
 
 

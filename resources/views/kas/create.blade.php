@@ -41,7 +41,6 @@
                   <option hidden>--Pilih arus--</option>
                   @foreach($penjualan as $dt)
                       <option >masuk</option>
-                      <option >keluar</option>
                   @endforeach
               </select>
             </div>

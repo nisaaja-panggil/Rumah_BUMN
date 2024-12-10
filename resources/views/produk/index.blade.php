@@ -41,7 +41,7 @@
                                 
                                 <a href="{{ route('produk.edit', $produk->id) }}" class="btn btn-sm btn-primary">Edit</a>
                                 <a href="{{ route('produk.show',$produk->id) }}" class="btn btn-sm btn-success">Show</a>
-                                <a href="{{ route('produk.create',$produk->id) }}" class="btn btn-sm btn-success">Beli</a>
+                                <a href="penjualan" class="btn btn-sm btn-success">Beli</a>
                                 <form action="{{ route('produk.destroy', $produk->id) }}" method="post" class="d-inline">
                                     @csrf
                                     @method('DELETE')
