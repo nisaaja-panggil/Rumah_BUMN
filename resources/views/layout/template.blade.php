@@ -110,14 +110,14 @@
                             {{-- <a href="{{ route('kategori.index')}}" --}}
                             <a href="{{route('produk.index')}}"
                                 class="nav-link {{ ($title==='barang') ? 'active':'' }}">
-                                <i class="nav-icon fas fa-users"></i>
+                                <i class="nav-icon fas fa-shopping-cart"></i>
                                 <p>
                                     produk
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('penitipan.index')}}" class="nav-link {{ ($title==='penjual')?'active':''}}">
+                            <a href="{{route('penitipan.index')}}" class="nav-link {{ ($title==='penitipan')?'active':''}}">
                                 <i class="nav-icon fas fa-book"></i>
                                 <p>
                                     penitipan
@@ -141,7 +141,7 @@
 
                         <li class="nav-item">
                             <a href="{{route('hutang.index')}}" class="nav-link {{ ($title==='hutang') ? 'active':'' }}">
-                                <i class="nav-icon fas fa-bookmark"></i>
+                                <i class="nav-icon fas fa-minus-circle"></i>
                                 <p>
                                    hutang
                                 </p>
@@ -149,7 +149,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="penjualan" class="nav-link {{ ($title==='hutang') ? 'active':'' }}">
-                                <i class="nav-icon fas fa-bookmark"></i>
+                                <i class="nav-icon fas fa-store"></i>
                                 <p>
                                   Penjualan
                                 </p>
