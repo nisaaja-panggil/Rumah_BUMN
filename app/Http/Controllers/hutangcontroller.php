@@ -48,13 +48,22 @@ class hutangcontroller extends Controller
 
     public function edit(hutang $hutang): View
     {
+        if ($hutang->status === 'lunas') {
+            // Kembali ke halaman index dengan pesan
+            return redirect()->route('hutang.index')->with('error', 'Status lunas tidak dapat mengedit data');
+        }
+    
         $title = 'Edit Hutang';
         $penitipan = penitipan::all();
+    
         return view('hutang.edit', compact('hutang', 'penitipan', 'title'));
     }
 
     public function update(Request $request, hutang $hutang): RedirectResponse
 {
+    if ($hutang->status === 'lunas') {
+        return redirect()->route('hutang.index')->withErrors(['error' => 'Hutang yang sudah lunas tidak dapat diubah.']);
+    }
     $request->validate([
         'penitipan_id' => 'required|exists:penitipans,id',
         'jumlah_hutang' => 'required|numeric|min:0',

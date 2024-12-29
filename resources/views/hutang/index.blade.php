@@ -13,6 +13,18 @@
 
 @section('konten')
 <div class="container">
+    @if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+    @endif
+
+    @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+    @endif
+
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -42,10 +54,14 @@
                                 <td>@money($item->jumlah_hutang) </td>
                                 <td>@money($item->jumlah_bayar) </td>
                                 <td>@money($item->sisa_hutang) </td>
-                                <td>{{ $item->status }}</td>
+                                <td>{{ ucfirst($item->status) }}</td>
                                 <td>{{ $item->tanggal }}</td>
                                 <td>
+                                    @if ($item->status === 'lunas')
+                                    <button class="btn btn-secondary btn-sm" disabled>Edit</button>
+                                    @else
                                     <a href="{{ route('hutang.edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                    @endif
                                     <form action="{{ route('hutang.destroy', $item->id) }}" method="POST" style="display:inline;">
                                         @csrf
                                         @method('DELETE')
@@ -95,11 +111,13 @@ $(function() {
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 });
 
-@if($message = Session::get('success'))
-toastr.success("{{ $message}}");
-@endif
-@if($message = Session::get('updated'))
-toastr.warning("{{ $message}}");
-@endif
+@if (session('success'))
+            toastr.success("{{ session('success') }}");
+        @endif
+
+        @if (session('error'))
+            toastr.error("{{ session('error') }}");
+        @endif
+
 </script>
 @endsection
