@@ -21,32 +21,32 @@ class penitipancontroller extends Controller
         return view('penitipan.tambah')->with(["title"=>"tambah data penitipan"]);
     }
     public function store(Request $request): RedirectResponse
-{ 
+{
     $request->validate([
         "nama_umkm" => "required",
         "merek" => "required",
         "jumlah_titip" => "required|numeric|min:1",
         "harga_satuan" => "required|numeric|min:0",
         "harga_bayar" => "required|numeric|min:0",
-        "status"=>"nullable",
+        "status" => "nullable",
         "tanggal" => "required|date",
     ]);
 
     // Simpan data penitipan
     $penitipan = Penitipan::create($request->all());
 
-    $statusPenitipan = $penitipan->status;
+    // Cek status penitipan
+    if ($penitipan->status !== 'lunas') {
+        // Simpan data hutang hanya jika status penitipan belum lunas
+        hutang::create([
+            'penitipan_id' => $penitipan->id,
+            'jumlah_hutang' => $request->harga_bayar, // jumlah_hutang disamakan dengan harga_bayar
+            'tanggal' => $request->tanggal,
+            'status' => $penitipan->status,
+        ]);
+    }
 
-    // Simpan data hutang
-    hutang::create([
-        
-        'penitipan_id' => $penitipan->id,
-        'jumlah_hutang' => $request->harga_bayar, // jumlah_hutang disamakan dengan harga_bayar
-        'tanggal' => $request->tanggal,
-        'status' => $statusPenitipan,
-    ]);
-
-    return redirect()->route('penitipan.index')->with('success', 'Data penitipan dan hutang berhasil ditambahkan');
+    return redirect()->route('penitipan.index')->with('success', 'Data penitipan berhasil ditambahkan');
 }
 
 
