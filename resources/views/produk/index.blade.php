@@ -45,7 +45,7 @@
                                 <form action="{{ route('produk.destroy', $produk->id) }}" method="post" class="d-inline">
                                     @csrf
                                     @method('DELETE')
-                                    <input type="submit" class="btn btn-sm btn-danger" value="Delete" onclick="return confirm('Apakah Anda yakin ingin menghapus buku ini?');">
+                                    <input type="submit" class="btn btn-sm btn-danger" value="Delete" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
                                 </form>
                             </div>
                         </div>

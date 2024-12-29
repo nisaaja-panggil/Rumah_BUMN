@@ -87,17 +87,18 @@ class hutangcontroller extends Controller
 
     // Cek jika hutang sudah lunas dan buat pencatatan kas keluar
     if ($status == 'lunas') {
+        $totalHutangAsli = $hutang->jumlah_hutang;
         $penitipan = penitipan::find($request->penitipan_id);
         if ($penitipan) {
             $penitipan->update(['status' => 'lunas']);
         }
+    
 
-        // Catat kas keluar
         kasn::create([
             'penjualan_id' => null, // Tidak terkait dengan penjualan
             'hutang_id' => $hutang->id, // Terkait dengan hutang
             'arus' => 'keluar', // Menandakan arus keluar
-            'total' => $request->jumlah_bayar, // Jumlah yang dibayar
+            'total' => $totalHutangAsli, // Total hutang asli
             'tanggal' => now(), // Tanggal transaksi
         ]);
     }

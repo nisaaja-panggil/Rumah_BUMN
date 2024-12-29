@@ -16,10 +16,16 @@ class kascontroller extends Controller
         $totalArusMasuk = kasn::where('arus', 'masuk')->sum('total');
         $totalArusKeluar = kasn::where('arus', 'keluar')->sum('total');
     
+        // Ambil data hutang dan hitung total pembayaran kumulatif
+        $dataKeluar = kasn::where('arus', 'keluar')->with('hutang')->get();
+        foreach ($dataKeluar as $item) {
+            $item->total_dibayar = hutang::where('id', $item->hutang_id)->sum('jumlah_bayar');
+        }
+    
         return view('kas.index', [
             "title" => "Data Kas",
             "dataMasuk" => kasn::where('arus', 'masuk')->get(),
-            "dataKeluar" => kasn::where('arus', 'keluar')->get(),
+            "dataKeluar" => $dataKeluar,
             "totalArusMasuk" => $totalArusMasuk,
             "totalArusKeluar" => $totalArusKeluar,
         ]);

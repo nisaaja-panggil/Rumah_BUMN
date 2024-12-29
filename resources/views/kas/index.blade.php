@@ -53,7 +53,8 @@
                         <tr>
                             <th>Tanggal</th>
                             <th>Hutang ID</th>
-                            <th>Total</th>
+                            <th>Total Dibayar</th>
+                            <th>Total Hutang Asli</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -61,7 +62,8 @@
                             <tr>
                                 <td>{{ $item->tanggal }}</td>
                                 <td>{{ $item->hutang->penitipan_id }}</td>
-                                <td>{{ $item->total }}</td>
+                                <td>{{ $item->total_dibayar }}</td> <!-- Total pembayaran kumulatif -->
+                                <td>{{ $item->hutang->jumlah_hutang }}</td> <!-- Total hutang asli -->
                             </tr>
                         @endforeach
                     </tbody>

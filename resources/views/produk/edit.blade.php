@@ -20,7 +20,7 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form action="{{ route('produk.update',$produk->id) }}" method="POST">
+        <form action="{{ route('produk.update',$produk->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class=" card-body">
@@ -44,7 +44,7 @@
                       </div>
                       <div class="mb-3">
                         <label for="foto" class="form-label">foto</label>
-                        <input type="image" class="form-control" id="foto" name="foto" value="{{$produk->foto}}">
+                        <input type="file" class="form-control" id="foto" name="foto" value="{{$produk->foto}}">
                       </div>
                 </div>
             </div>
