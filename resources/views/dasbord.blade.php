@@ -43,7 +43,7 @@
                     <li><strong>Alamat:</strong> Jl. Rantau, Bukit Tempurung, Kota Kuala Simpang</li>
                     <li><strong>Telepon:</strong> 0823-2000-3866</li>
                     <li><strong>Email:</strong> <a href="mailto:rkbacehtamiang@gmail.com">rkbacehtamiang@gmail.com</a></li>
-                    <li><strong>Instagram:</strong> <a href="https://www.instagram.com/rumahbumnacehtamiang" target="_blank">@rumahbumnacehtamiang</a></li>
+                    <li><strong>Instagram:</strong> <a href="https://www.instagram.com/rumahbumn.acehtamiang" target="_blank">@rumahbumnacehtamiang</a></li>
                 </ul>
             </div>
         </div>

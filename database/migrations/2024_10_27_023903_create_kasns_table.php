@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('kasns', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('penjualan_id')->nullable();  // Foreign key ke tabel orders
-            $table->unsignedBigInteger('hutang_id')->nullable(); // Foreign key ke tabel hutang
-           $table->double('total');
+            $table->unsignedBigInteger('penjualan_id')->nullable(); 
+            $table->unsignedBigInteger('hutang_id')->nullable(); 
+            $table->double('total');
             $table->enum('arus', ['masuk', 'keluar']);
             $table->date('tanggal');
             $table->timestamps();

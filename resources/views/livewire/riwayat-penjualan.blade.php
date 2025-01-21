@@ -10,6 +10,7 @@ Riwayat Penjualan
         <h3 class="card-title">Riwayat Penjualan</h3>
     </div>
     <div class="card-body">
+        
         <table class="table table-bordered">
             <thead>
                 <tr>
